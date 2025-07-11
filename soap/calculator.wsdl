@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="CalculatorService"
+    targetNamespace="http://example.com/calculator"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tns="http://example.com/calculator"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <message name="AddRequest">
+        <part name="a" type="xsd:float"/>
+        <part name="b" type="xsd:float"/>
+    </message>
+    <message name="AddResponse">
+        <part name="result" type="xsd:float"/>
+    </message>
+
+    <message name="SubtractRequest">
+        <part name="a" type="xsd:float"/>
+        <part name="b" type="xsd:float"/>
+    </message>
+    <message name="SubtractResponse">
+        <part name="result" type="xsd:float"/>
+    </message>
+
+    <message name="MultiplyRequest">
+        <part name="a" type="xsd:float"/>
+        <part name="b" type="xsd:float"/>
+    </message>
+    <message name="MultiplyResponse">
+        <part name="result" type="xsd:float"/>
+    </message>
+
+    <message name="DivideRequest">
+        <part name="a" type="xsd:float"/>
+        <part name="b" type="xsd:float"/>
+    </message>
+    <message name="DivideResponse">
+        <part name="result" type="xsd:float"/>
+    </message>
+
+    <portType name="CalculatorPortType">
+        <operation name="Add">
+            <input message="tns:AddRequest"/>
+            <output message="tns:AddResponse"/>
+        </operation>
+        <operation name="Subtract">
+            <input message="tns:SubtractRequest"/>
+            <output message="tns:SubtractResponse"/>
+        </operation>
+        <operation name="Multiply">
+            <input message="tns:MultiplyRequest"/>
+            <output message="tns:MultiplyResponse"/>
+        </operation>
+        <operation name="Divide">
+            <input message="tns:DivideRequest"/>
+            <output message="tns:DivideResponse"/>
+        </operation>
+    </portType>
+
+    <binding name="CalculatorBinding" type="tns:CalculatorPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="Add">
+            <soap:operation soapAction="http://example.com/calculator/Add"/>
+            <input>
+                <soap:body use="literal" namespace="http://example.com/calculator"/>
+            </input>
+            <output>
+                <soap:body use="literal" namespace="http://example.com/calculator"/>
+            </output>
+        </operation>
+        <operation name="Subtract">
+            <soap:operation soapAction="http://example.com/calculator/Subtract"/>
+            <input>
+                <soap:body use="literal" namespace="http://example.com/calculator"/>
+            </input>
+            <output>
+                <soap:body use="literal" namespace="http://example.com/calculator"/>
+            </output>
+        </operation>
+        <operation name="Multiply">
+            <soap:operation soapAction="http://example.com/calculator/Multiply"/>
+            <input>
+                <soap:body use="literal" namespace="http://example.com/calculator"/>
+            </input>
+            <output>
+                <soap:body use="literal" namespace="http://example.com/calculator"/>
+            </output>
+        </operation>
+        <operation name="Divide">
+            <soap:operation soapAction="http://example.com/calculator/Divide"/>
+            <input>
+                <soap:body use="literal" namespace="http://example.com/calculator"/>
+            </input>
+            <output>
+                <soap:body use="literal" namespace="http://example.com/calculator"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="CalculatorService">
+        <port name="CalculatorPort" binding="tns:CalculatorBinding">
+            <soap:address location="http://localhost:5000/calculator"/>
+        </port>
+    </service>
+</definitions>
